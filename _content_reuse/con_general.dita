@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="con_general">
+    <title>con_general</title>
+    <body>
+        <section id="section_wv5_wq3_pyb"><title id="encord_intro">Introduction to Encord</title><p
+                id="encord_intro_01">Encord is a comprehensive data engine and software stack
+                solution offering a range of features to streamline and optimize your ML workflow.
+                It consists of three main components: Annotate, Active, and Apollo.</p><ul
+                id="encord_intro_02">
+                <li>
+                    <p><b>Annotate</b>: Annotate is a powerful tool that enables users to create
+                        labeling workflows and transform unlabeled data into labeled data. Label
+                        data with object boundaries and classification labels, and review labels
+                        using manual or automatic quality assurance methods. Annotate simplifies the
+                        process of creating high-quality labeled datasets, which are essential for
+                        training ML models.</p>
+                </li>
+                <li>
+                    <p><b>Active</b>: Active facilitates the validation and debugging of datasets
+                        through systematic active-learning cycles. Analyze your annotated data sets
+                        to hone in on the best labels, while rejecting those hindering a model's
+                        performance. By iteratively refining your training data, Active helps
+                        improve the quality and performance of ML models over time.</p>
+                </li>
+                <li>
+                    <p><b>Apollo</b>: Apollo serves as a comprehensive platform for creating and
+                        training ML models. Build and fine-tune your computer vision models,
+                        tracking their performance in response to specific data, and analyzing how
+                        changes in the dataset affect a model's accuracy.</p>
+                </li>
+            </ul><image href="images/annotate-active-apollo.png" id="image_encord_intro_01"
+                width="500" align="center"/><p id="encord_intro_03">Encord promotes an iterative
+                approach towards developing optimal computer vision models. By leveraging the
+                capabilities of Annotate, Active, and Apollo, you can continuously refine your
+                models and labels.</p><p id="encord_intro_04">As changes to data are made, the
+                impact on the model's performance is tracked, enabling you to assess the
+                effectiveness of your modifications. Incorporating these insights results in
+                improved models and more accurate labeling. This feedback loop allows you to build
+                the optimal computer vision model for any use-case.</p></section>
+        <section id="section_if2_hkl_pyb">
+            <title>About Encord Datasets</title>
+            <p id="about_datasets">Datasets consist of data you want to label. They are top-level
+                entities in Encord, which means that a given dataset can be attached to multiple
+                projects, and projects may be attached to more than one dataset at a time.</p>
+        </section>
+        <section id="section_m5x_qz3_pyb">
+            <title id="import_guildelines_01">Data Upload Guidelines</title>
+            <p id="import_guildelines_02">While the Encord platform is able to handle large volumes
+                of data, we strongly recommend working within the following specifications to ensure
+                smooth operations and to limit loading times.</p>
+            <note id="import_guildelines_03">
+                <p>The specifications outlined below apply when using the SDK or the web-app.</p>
+            </note>
+            <table frame="all" rowsep="1" colsep="1" id="import_guildelines_04">
+                <title>Data Upload Specifications by Tier</title>
+                <tgroup cols="4">
+                    <colspec colname="c1" colnum="1" colwidth="1*"/>
+                    <colspec colname="c2" colnum="2" colwidth="1*"/>
+                    <colspec colname="c3" colnum="3" colwidth="1*"/>
+                    <colspec colname="c4" colnum="4" colwidth="1*"/>
+                    <thead>
+                        <row>
+                            <entry>
+                                <p><b>Limit</b></p>
+                            </entry>
+                            <entry>
+                                <p><b>Enterprise</b></p>
+                            </entry>
+                            <entry>
+                                <p><b>Team</b></p>
+                            </entry>
+                            <entry>
+                                <p><b>Free</b></p>
+                            </entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry>
+                                <p>Maximum number of data units</p>
+                            </entry>
+                            <entry>
+                                <p>5,000</p>
+                            </entry>
+                            <entry>
+                                <p>2,500</p>
+                            </entry>
+                            <entry>
+                                <p>1000</p>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <p>Maximum image/video/DICOM file size</p>
+                            </entry>
+                            <entry>
+                                <p><b>1 GB</b></p>
+                            </entry>
+                            <entry>
+                                <p><b>1 GB</b></p>
+                            </entry>
+                            <entry>
+                                <p><b>500 MB</b></p>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <p>Maximum JSON file size</p>
+                            </entry>
+                            <entry>
+                                <p>100 MB</p>
+                            </entry>
+                            <entry>
+                                <p>100 MB</p>
+                            </entry>
+                            <entry>
+                                <p>10 MB</p>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <p>Maximum resolution</p>
+                            </entry>
+                            <entry>
+                                <p>4K (3840 x 2160 px)</p>
+                            </entry>
+                            <entry>
+                                <p>4K (3840 x 2160 px)</p>
+                            </entry>
+                            <entry>
+                                <p>4K (3840 x 2160 px)</p>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <p>Number of frames per video</p>
+                            </entry>
+                            <entry>
+                                <p>200,000 (2hrs at 30fps)</p>
+                            </entry>
+                            <entry>
+                                <p>200,000 (2hrs at 30fps)</p>
+                            </entry>
+                            <entry>
+                                <p>200,000 (2hrs at 30fps)</p>
+                            </entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
+            <table frame="all" rowsep="1" colsep="1" id="import_guildelines_05">
+                <title>Supported Data Types</title>
+                <tgroup cols="2">
+                    <colspec colname="c1" colnum="1" colwidth="20%"/>
+                    <colspec colname="c2" colnum="2" colwidth="80%"/>
+                    <thead>
+                        <row>
+                            <entry>
+                                <p><b>File</b></p>
+                            </entry>
+                            <entry>
+                                <p><b>Details</b></p>
+                            </entry>
+                        </row>
+                    </thead>
+                    <tbody>
+                        <row>
+                            <entry>
+                                <p>Single images</p>
+                            </entry>
+                            <entry>
+                                <p>Single images are individual images that are uploaded to Encord
+                                    as separate files. Each single image constitutes its own data
+                                    package, hence images will be listed individually.</p>
+                                <p>We support the following file types for single images:</p>
+                                <p><codeph>.jpeg</codeph>,  <codeph>.png</codeph>,  
+                                        <codeph>.webp</codeph>,  <codeph>.avif</codeph>,
+                                         <codeph>.bmp</codeph>,  <codeph>.tiff</codeph>*,  
+                                        <codeph>.tif</codeph>*</p>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <p>Image groups</p>
+                            </entry>
+                            <entry>
+                                <p>Image groups are collections of images that are grouped together
+                                    into a single data unit. They can contain images of varying
+                                    orientations and no data is lost in the process of creating an
+                                    image group.</p>
+                                <p>We support the following file types for image groups:</p>
+                                <p><codeph>.jpeg</codeph>,  <codeph>.png</codeph>,  
+                                        <codeph>.webp</codeph>,  <codeph>.avif</codeph>,
+                                         <codeph>.bmp</codeph>,  <codeph>.tiff</codeph>*,  
+                                        <codeph>.tif</codeph>*</p>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <p>Image sequences</p>
+                            </entry>
+                            <entry>
+                                <p>Image sequences are collections of images that are grouped
+                                    together as a single data unit, and annotated in the same way as
+                                    videos.</p>
+                                <p>We support the following file types for image sequences:</p>
+                                <p><codeph>.jpeg</codeph>,  <codeph>.png</codeph>,  
+                                        <codeph>.webp</codeph>,  <codeph>.avif</codeph>,
+                                         <codeph>.bmp</codeph>,  <codeph>.tiff</codeph>*,  
+                                        <codeph>.tif</codeph>*</p>
+                                <note id="note_p4m_frp_pyb" type="warning">
+                                    <p>If you upload your data from cloud storage using JSON or CSV
+                                        file formats, you retain full control over which image
+                                        sequence every image will end up in. However, if images you
+                                        choose to form into a sequence have varying dimensions they
+                                        will be homogenized. This means that every image within your
+                                        defined sequence will be made to have the same dimensions as
+                                        the first image in that sequence. As a result, data may be
+                                        lost when forming image sequences.</p>
+                                </note>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <p>Videos</p>
+                            </entry>
+                            <entry>
+                                <p>Video files can be uploaded onto the Encord platform and
+                                    annotated frame by frame, enabling you to track elements within
+                                    the video. Even though frames are treated as individual images
+                                    when being annotated, the video itself constitutes a single data
+                                    package.</p>
+                                <p>File uploads must be less than <b>2 GB</b> or 200,000 frames
+                                    (2hrs @ 30FPS).</p>
+                                <p>We currently support the following video file types:</p>
+                                <p><codeph>.mp4</codeph>
+                                    <codeph>.mov</codeph>
+                                    <codeph>.webm</codeph>
+                                    <codeph>.mkv</codeph></p>
+                                <note id="note_hmr_vrp_pyb" type="tip">
+                                    <p>For optimized performance we recommend using the following
+                                        video formats:</p>
+                                    <ul id="ul_zmj_jdp_pyb">
+                                        <li>
+                                            <p><codeph>.mp4</codeph> file with h.264.</p>
+                                        </li>
+                                        <li>
+                                            <p><codeph>.mp4</codeph> with vp9.</p>
+                                        </li>
+                                    </ul>
+                                </note>
+                            </entry>
+                        </row>
+                        <row>
+                            <entry>
+                                <p>DICOM</p>
+                            </entry>
+                            <entry>
+                                <p>Encord provides native support for Digital Imaging and
+                                    Communications in Medicine (DICOM) file formats. Because DICOM
+                                    is a large and open standard Encord accepts most data types. For
+                                    example: CT, MR, US, MG, TOMO, but Encord accepts many more than
+                                    these.</p>
+                                <p><b>Multi-frame DICOM Support</b></p>
+                                <p>We support multi-frame DICOMs, making it even easier and faster
+                                    to load data onto our platform! Multi-frame DICOM support can
+                                    save time and streamline workflows due to a reduced amount of
+                                    header data repetition.</p>
+                                <p>Simply upload your multi-frame DICOM files like you would any
+                                    other files - using the web-app or using our Python SDK.</p>
+                            </entry>
+                        </row>
+                    </tbody>
+                </tgroup>
+            </table>
+        </section>
+        <section id="section_wsk_l2j_pyb">
+            <title/>
+            <p>To learn how to upload images from your cloud storage, follow the links below:</p>
+            <ul id="ul_d5r_n2j_pyb">
+                <li><xref
+                        href="https://docs.encord.com/docs/annotate-private-cloud-integration#json-format"
+                        format="html" scope="external">JSON</xref></li>
+                <li><xref
+                        href="https://docs.encord.com/docs/annotate-private-cloud-integration#csv-format"
+                        format="html" scope="external">CSV</xref></li>
+            </ul>
+        </section>
+        <section id="section_s4s_42j_pyb">
+            <title>Image groups</title>
+            <lq id="lq_u4s_42j_pyb">
+                <p>👍</p>
+                <p>Tip</p>
+                <p>To learn how to upload image groups from your cloud storage, follow the links
+                    below:</p>
+                <ul id="ul_v4s_42j_pyb">
+                    <li><xref
+                            href="https://docs.encord.com/docs/annotate-private-cloud-integration#json-format"
+                            format="html" scope="external">JSON</xref></li>
+                    <li><xref
+                            href="https://docs.encord.com/docs/annotate-private-cloud-integration#csv-format"
+                            format="html" scope="external">CSV</xref></li>
+                </ul>
+            </lq>
+        </section>
+        <section id="section_rc3_q2j_pyb">
+            <title/>
+            <lq id="lq_tc3_q2j_pyb">
+                <p>👍</p>
+                <p>Tip</p>
+                <p>To learn how to upload image sequences from your cloud storage, follow the links
+                    below:</p>
+                <ul id="ul_uc3_q2j_pyb">
+                    <li><xref
+                            href="https://docs.encord.com/docs/annotate-private-cloud-integration#json-format"
+                            format="html" scope="external">JSON</xref></li>
+                    <li><xref
+                            href="https://docs.encord.com/docs/annotate-private-cloud-integration#csv-format"
+                            format="html" scope="external">CSV</xref></li>
+                </ul>
+            </lq>
+            <p><b>Creating image sequences from cloud storage using JSON or CSV</b></p>
+            <p>If you upload your data from cloud storage using JSON or CSV file formats, you retain
+                full control over which image sequence every image will end up in. However, if
+                images you choose to form into a sequence have varying dimensions they will be
+                homogenized. This means that every image within your defined sequence will be made
+                to have the same dimensions as the first image in that sequence. As a result, data
+                may be lost when forming image sequences.</p>
+        </section>
+        <section id="section_f4w_52j_pyb">
+            <title>Videos</title>
+            <p>Video files can be uploaded onto the Encord platform and annotated frame by frame,
+                enabling you to track elements within the video. Even though frames are treated as
+                individual images when being annotated, the video itself constitutes a single data
+                package.</p>
+            <p>File uploads must be less than 2 GB or 200,000 frames (2hrs @ 30FPS).</p>
+            <p>Encord's Apollo product has powerful machine learning features such as '<xref
+                    href="https://docs.encord.com/docs/apollo-object-detection" format="html"
+                    scope="external">object detection</xref>' and '<xref
+                    href="https://docs.encord.com/docs/apollo-instance-segmentation" format="html"
+                    scope="external">instance segmentation</xref>' available that can help automate
+                parts of your video annotation process.</p>
+            <p>We currently support the following video file types:</p>
+            <p><codeph>.mp4</codeph>
+                <codeph>.mov</codeph>
+                <codeph>.webm</codeph>
+                <codeph>.mkv</codeph></p>
+            <p>However, for optimized performance we recommend using the following video
+                formats:</p>
+            <ul id="ul_g4w_52j_pyb">
+                <li>
+                    <p><codeph>.mp4</codeph> file with h.264.</p>
+                </li>
+                <li>
+                    <p><codeph>.mp4</codeph> with vp9.</p>
+                </li>
+            </ul>
+            <lq id="lq_h4w_52j_pyb">
+                <p>👍</p>
+                <p>Tip</p>
+                <p>To learn how to upload videos from your cloud storage, follow the links
+                    below:</p>
+                <ul id="ul_i4w_52j_pyb">
+                    <li><xref
+                            href="https://docs.encord.com/docs/annotate-private-cloud-integration#json-format"
+                            format="html" scope="external">JSON</xref></li>
+                    <li><xref
+                            href="https://docs.encord.com/docs/annotate-private-cloud-integration#csv-format"
+                            format="html" scope="external">CSV</xref></li>
+                </ul>
+            </lq>
+        </section>
+        <section id="section_fg4_1fj_pyb">
+            <title>DICOM</title>
+            <p>Encord provides native support for Digital Imaging and Communications in Medicine
+                (DICOM) browser rendering and data annotations. Our <xref
+                    href="https://docs.encord.com/docs/annotate-working-with-ontologies"
+                    format="html" scope="external">ontologies</xref> allow you to create any type of
+                labeling protocol - for example RECIST, which requires measuring the longest
+                diameter of a lesion.</p>
+            <p>With the DICOM editor, you can:</p>
+            <ul id="ul_gg4_1fj_pyb">
+                <li>Annotate modalities such as CT, X-ray, and MRI.</li>
+                <li>Label using any annotation type in 2D (with 3D in the works), and seamlessly
+                    toggle between axial, coronal, and sagittal views.</li>
+                <li>Render 20,000 pixel intensities and set custom window widths &amp; levels.</li>
+                <li>Natively display DICOM metadata.</li>
+                <li>Track and interpolate objects between slices.</li>
+                <li>Reduce manual annotations with automation features.</li>
+            </ul>
+            <note id="note_dzw_s3l_pyb">
+                <p>Due to DICOM being a large and open standard Encord will accept most data types.
+                    Examples include: CT, MR, US, MG, TOMO, but many more will be accepted.</p>
+            </note>
+            <lq id="lq_ig4_1fj_pyb">
+                <p>👍</p>
+                <p>Tip</p>
+                <p>To learn how to upload DICOM files from your cloud storage, follow the link
+                    below:</p>
+                <ul id="ul_jg4_1fj_pyb">
+                    <li><xref
+                            href="https://docs.encord.com/docs/annotate-private-cloud-integration#json-format"
+                            format="html" scope="external">JSON</xref></li>
+                </ul>
+            </lq>
+        </section>
+    </body>
+</topic>

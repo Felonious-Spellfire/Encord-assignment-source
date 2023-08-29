@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="about_encord">
+    <title conref="_content_reuse/con_general.dita#con_general/encord_intro"/>
+    <body>
+        <p conref="_content_reuse/con_general.dita#con_general/encord_intro_01"
+            conrefend="_content_reuse/con_general.dita#con_general/encord_intro_04"/>
+    </body>
+</topic>

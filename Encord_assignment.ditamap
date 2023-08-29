@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
+<map>
+    <title>Encord Assignment</title>
+    <topicref href="solution_intro.dita"/>
+    <topicref href="web_app_help.dita">
+        <topicref href="about_encord.dita"/>
+        <topicref href="guidelines_for_optimal_performance.dita"/>
+    </topicref>
+    <topicref href="encord_python_sdk.dita">
+        <topicref href="about_encord.dita"/>
+        <topicref href="datasets.dita"/>
+        <topicref href="sdk_reference.dita">
+            <topicref href="dataset_sdk.dita"/>
+        </topicref>
+    </topicref>
+</map>

@@ -1,0 +1,833 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="dataset_sdk">
+    <title>Dataset (SDK)</title>
+    <body/>
+    <topic id="topic_awr_pdq_pyb">
+        <title><i>class </i>encord.dataset.<b>Dataset</b>(<i>client</i>)</title>
+        <body>
+            <p>Access dataset related data and manipulate the dataset.</p>
+            <dl id="dl_kbn_51q_pyb">
+                <dlentry>
+                    <dt id="encord.dataset.Dataset.dataset_hash"><i>property
+                            </i><b>dataset_hash</b><i>: str</i></dt>
+                    <dd>
+                        <p>Get the dataset hash (for example the Dataset ID).</p>
+                        <dl id="dl_lbn_51q_pyb">
+                            <dlentry>
+                                <dt>Return type</dt>
+                                <dd>
+                                    <p><codeph>str</codeph></p>
+                                </dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+            <dl id="dl_mbn_51q_pyb">
+                <dlentry>
+                    <dt id="encord.dataset.Dataset.title"><i>property </i><b>title</b><i>:
+                        str</i></dt>
+                    <dd>
+                        <dl id="dl_nbn_51q_pyb">
+                            <dlentry>
+                                <dt>Return type</dt>
+                                <dd>
+                                    <p><codeph>str</codeph></p>
+                                </dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+            <dl id="dl_obn_51q_pyb">
+                <dlentry>
+                    <dt id="encord.dataset.Dataset.description"><i>property
+                            </i><b>description</b><i>: str</i></dt>
+                    <dd>
+                        <dl id="dl_pbn_51q_pyb">
+                            <dlentry>
+                                <dt>Return type</dt>
+                                <dd>
+                                    <p><codeph>str</codeph></p>
+                                </dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+            <dl id="dl_qbn_51q_pyb">
+                <dlentry>
+                    <dt id="encord.dataset.Dataset.storage_location"><i>property
+                            </i><b>storage_location</b><i>: <xref
+                                href="https://python.docs.encord.com/api.html#encord.orm.dataset.StorageLocation"
+                                format="html" scope="external"
+                                >encord.orm.dataset.StorageLocation</xref></i></dt>
+                    <dd>
+                        <dl id="dl_rbn_51q_pyb">
+                            <dlentry>
+                                <dt>Return type</dt>
+                                <dd>
+                                    <p><xref
+                                            href="https://python.docs.encord.com/api.html#encord.orm.dataset.StorageLocation"
+                                            format="html" scope="external"
+                                                ><codeph>StorageLocation</codeph></xref></p>
+                                </dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+            <codeblock id="codeblock_pn1_4bq_pyb">class Dataset:
+    """
+    Access dataset related data and manipulate the dataset.
+    """
+
+    def __init__(self, client: EncordClientDataset):
+        self._client = client
+        self._dataset_instance: Optional[OrmDataset] = None
+
+    @property
+    def dataset_hash(self) -> str:
+        """
+        Get the dataset hash (i.e. the Dataset ID).
+        """
+        dataset_instance = self._get_dataset_instance()
+        return dataset_instance.dataset_hash
+
+    @property
+    def title(self) -> str:
+        dataset_instance = self._get_dataset_instance()
+        return dataset_instance.title
+
+    @property
+    def description(self) -> str:
+        dataset_instance = self._get_dataset_instance()
+        return dataset_instance.description
+
+    @property
+    def storage_location(self) -> StorageLocation:
+        dataset_instance = self._get_dataset_instance()
+        return dataset_instance.storage_location
+
+    @property
+    def data_rows(self) -> List[DataRow]:
+        """
+        Part of the response of this function can be configured by the
+        :meth:`encord.dataset.Dataset.set_access_settings` method.
+
+        .. code::
+
+            dataset.set_access_settings(DatasetAccessSettings(fetch_client_metadata=True))
+            print(dataset.data_rows)
+        """
+        dataset_instance = self._get_dataset_instance()
+        return dataset_instance.data_rows</codeblock>
+        </body>
+    </topic>
+    <topic id="topic_hrh_mhq_pyb">
+        <title><i>property </i><b>data_rows</b></title>
+        <body>
+            <dl id="dl_sbn_51q_pyb">
+                <dlentry>
+                    <dt id="encord.dataset.Dataset.data_rows"><i>property </i><b>data_rows</b><i>:
+                                List[<xref
+                                href="https://python.docs.encord.com/api.html#encord.orm.dataset.DataRow"
+                                format="html" scope="external"
+                            >encord.orm.dataset.DataRow</xref>]</i></dt>
+                    <dd>
+                        <p>Part of the response of this function can be configured by the <xref
+                                href="https://python.docs.encord.com/api.html#encord.dataset.Dataset.set_access_settings"
+                                format="html" scope="external"
+                                    ><codeph>encord.dataset.Dataset.set_access_settings()</codeph></xref>
+                            method.</p>
+                        <pre id="codecell7">dataset<b>.</b>set_access_settings<b>(</b>DatasetAccessSettings<b>(</b>fetch_client_metadata<b>=</b><b>True</b><b>))</b>print<b>(</b>dataset<b>.</b>data_rows<b>)</b></pre>
+                        <dl id="dl_tbn_51q_pyb">
+                            <dlentry>
+                                <dt>Return type</dt>
+                                <dd>
+                                    <p><codeph>List</codeph>[<xref
+                                            href="https://python.docs.encord.com/api.html#encord.orm.dataset.DataRow"
+                                            format="html" scope="external"
+                                            ><codeph>DataRow</codeph></xref>]</p>
+                                </dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+            <dl id="dl_ubn_51q_pyb">
+                <dlentry>
+                    <dt id="encord.dataset.Dataset.list_data_rows"
+                            ><b>list_data_rows</b>(<i>title_eq=None</i>, <i>title_like=None</i>,
+                            <i>created_before=None</i>, <i>created_after=None</i>,
+                            <i>data_types=None</i>)</dt>
+                    <dd>
+                        <p>Retrieve dataset rows (pointers to data, labels).</p>
+                        <dl id="dl_vbn_51q_pyb">
+                            <dlentry>
+                                <dt>Parameters</dt>
+                                <dd>
+                                    <ul id="ul_wbn_51q_pyb">
+                                        <li>
+                                            <p><b>title_eq</b>
+                                                  (<codeph>Optional</codeph>[<codeph>str</codeph>])
+                                                – optional exact title row filter</p>
+                                        </li>
+                                        <li>
+                                            <p><b>title_like</b>
+                                                  (<codeph>Optional</codeph>[<codeph>str</codeph>])
+                                                – optional fuzzy title row filter; SQL syntax</p>
+                                        </li>
+                                        <li>
+                                            <p><b>created_before</b>
+                                                  (<codeph>Union</codeph>[<codeph>str</codeph>,
+                                                  <codeph>datetime</codeph>, <codeph>None</codeph>])
+                                                – optional datetime row filter</p>
+                                        </li>
+                                        <li>
+                                            <p><b>created_after</b>
+                                                  (<codeph>Union</codeph>[<codeph>str</codeph>,
+                                                  <codeph>datetime</codeph>, <codeph>None</codeph>])
+                                                – optional datetime row filter</p>
+                                        </li>
+                                        <li>
+                                            <p><b>data_types</b>
+                                                  (<codeph>Optional</codeph>[<codeph>List</codeph>[<xref
+                                                  href="https://python.docs.encord.com/api.html#encord.constants.enums.DataType"
+                                                  format="html" scope="external"
+                                                  ><codeph>DataType</codeph></xref>]]) – optional
+                                                data types row filter</p>
+                                        </li>
+                                    </ul>
+                                </dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt>Returns</dt>
+                                <dd>
+                                    <p>A list of DataRows object that match the filter</p>
+                                </dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt>Return type</dt>
+                                <dd>
+                                    <p>List[<xref
+                                            href="https://python.docs.encord.com/api.html#encord.orm.dataset.DataRow"
+                                            format="html" scope="external">DataRow</xref>]</p>
+                                </dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt>Raises</dt>
+                                <dd>
+                                    <ul id="ul_xbn_51q_pyb">
+                                        <li>
+                                            <p><xref
+                                                  href="https://python.docs.encord.com/api.html#encord.exceptions.AuthorisationError"
+                                                  format="html" scope="external"
+                                                  ><b>AuthorisationError</b></xref> – If the dataset
+                                                API key is invalid.</p>
+                                        </li>
+                                        <li>
+                                            <p><xref
+                                                  href="https://python.docs.encord.com/api.html#encord.exceptions.ResourceNotFoundError"
+                                                  format="html" scope="external"
+                                                  ><b>ResourceNotFoundError</b></xref> – If no
+                                                dataset exists by the specified dataset
+                                                EntityId.</p>
+                                        </li>
+                                        <li>
+                                            <p><b>UnknownError</b> – If an error occurs while
+                                                retrieving the dataset.</p>
+                                        </li>
+                                    </ul>
+                                </dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+            <codeblock id="codeblock_dtz_rbq_pyb">    def list_data_rows(
+        self,
+        title_eq: Optional[str] = None,
+        title_like: Optional[str] = None,
+        created_before: Optional[Union[str, datetime]] = None,
+        created_after: Optional[Union[str, datetime]] = None,
+        data_types: Optional[List[DataType]] = None,
+    ) -> List[DataRow]:
+        """
+        Retrieve dataset rows (pointers to data, labels).
+
+        Args:
+            title_eq: optional exact title row filter
+            title_like: optional fuzzy title row filter; SQL syntax
+            created_before: optional datetime row filter
+            created_after: optional datetime row filter
+            data_types: optional data types row filter
+
+        Returns:
+            List[DataRow]: A list of DataRows object that match the filter
+
+        Raises:
+            AuthorisationError: If the dataset API key is invalid.
+            ResourceNotFoundError: If no dataset exists by the specified dataset EntityId.
+            UnknownError: If an error occurs while retrieving the dataset.
+        """
+
+        return self._client.list_data_rows(title_eq, title_like, created_before, created_after, data_types)</codeblock>
+        </body>
+    </topic>
+    <topic id="topic_fls_phq_pyb">
+        <title><b>refetch_data</b>()</title>
+        <body>
+            <dl id="dl_ybn_51q_pyb">
+                <dlentry>
+                    <dt id="encord.dataset.Dataset.refetch_data"/>
+                    <dd>
+                        <p>The Dataset class will only fetch its properties once. Use this function
+                            if you suspect the state of those properties to be dirty.</p>
+                        <dl id="dl_zbn_51q_pyb">
+                            <dlentry>
+                                <dt>Return type</dt>
+                                <dd>
+                                    <p><codeph>None</codeph></p>
+                                </dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+            <codeblock id="codeblock_n24_5bq_pyb">    def refetch_data(self) -> None:
+        """
+        The Dataset class will only fetch its properties once. Use this function if you suspect the state of those
+        properties to be dirty.
+        """
+        self._dataset_instance = self.get_dataset()</codeblock>
+        </body>
+    </topic>
+    <topic id="topic_vxs_rhq_pyb">
+        <title><b>get_dataset</b>()</title>
+        <body>
+            <p>This function is exposed for convenience. You are encouraged to use the property
+                accessors instead.</p>
+            <dl id="dl_acn_51q_pyb">
+                <dlentry>
+                    <dt id="encord.dataset.Dataset.get_dataset"/>
+                    <dd>
+                        <dl id="dl_bcn_51q_pyb">
+                            <dlentry>
+                                <dt>Return type</dt>
+                                <dd>
+                                    <p><xref
+                                            href="https://python.docs.encord.com/api.html#encord.orm.dataset.Dataset"
+                                            format="html" scope="external"
+                                            ><codeph>Dataset</codeph></xref></p>
+                                </dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+            <codeblock id="codeblock_zqb_bcq_pyb">    def get_dataset(self) -> OrmDataset:
+        """
+        This function is exposed for convenience. You are encouraged to use the property accessors instead.
+        """
+        return self._client.get_dataset()</codeblock>
+        </body>
+    </topic>
+    <topic id="topic_ywl_5hq_pyb">
+        <title><b>set_access_settings</b></title>
+        <body>
+            <dl id="dl_ccn_51q_pyb">
+                <dlentry>
+                    <dt id="encord.dataset.Dataset.set_access_settings"
+                            ><b>set_access_settings</b>(<i>dataset_access_settings</i>, <i>*</i>,
+                            <i>refetch_data=True</i>)</dt>
+                    <dd>
+                        <dl id="dl_dcn_51q_pyb">
+                            <dlentry>
+                                <dt>Parameters</dt>
+                                <dd>
+                                    <ul id="ul_ecn_51q_pyb">
+                                        <li>
+                                            <p><b>dataset_access_settings</b> (<xref
+                                                  href="https://python.docs.encord.com/api.html#encord.orm.dataset.DatasetAccessSettings"
+                                                  format="html" scope="external"
+                                                  ><codeph>DatasetAccessSettings</codeph></xref>) –
+                                                The access settings to use going forward</p>
+                                        </li>
+                                        <li>
+                                            <p><b>refetch_data</b> (<codeph>bool</codeph>) – Whether
+                                                a <i>refetch_data()</i> call should follow the
+                                                update of the dataset access settings.</p>
+                                        </li>
+                                    </ul>
+                                </dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt>Return type</dt>
+                                <dd>
+                                    <p><codeph>None</codeph></p>
+                                </dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+            <codeblock id="codeblock_pxl_zbq_pyb">    def set_access_settings(self, dataset_access_settings: DatasetAccessSettings, *, refetch_data: bool = True) -> None:
+        """
+        Args:
+            dataset_access_settings: The access settings to use going forward
+            refetch_data: Whether a `refetch_data()` call should follow the update of the dataset access settings.
+        """
+        self._client.set_access_settings(dataset_access_settings)
+        if refetch_data:
+            self.refetch_data()</codeblock>
+        </body>
+    </topic>
+    <topic id="topic_k12_whq_pyb">
+        <title><b>add_users</b></title>
+        <body>
+            <dl id="dl_fcn_51q_pyb">
+                <dlentry>
+                    <dt id="encord.dataset.Dataset.add_users"><b>add_users</b>(<i>user_emails</i>,
+                            <i>user_role</i>)</dt>
+                    <dd>
+                        <p>Add users to dataset. If the user was already added, this operation will
+                            succeed but the <i>user_role</i> will be unchanged. The existing
+                                <i>user_role</i> will be reflected in the <i>DatasetUser</i>
+                            instance.</p>
+                        <dl id="dl_gcn_51q_pyb">
+                            <dlentry>
+                                <dt>Parameters</dt>
+                                <dd>
+                                    <ul id="ul_hcn_51q_pyb">
+                                        <li>
+                                            <p><b>user_emails</b>
+                                                  (<codeph>List</codeph>[<codeph>str</codeph>]) –
+                                                list of user emails to be added</p>
+                                        </li>
+                                        <li>
+                                            <p><b>user_role</b> (<xref
+                                                  href="https://python.docs.encord.com/api.html#encord.orm.dataset.DatasetUserRole"
+                                                  format="html" scope="external"
+                                                  ><codeph>DatasetUserRole</codeph></xref>) – the
+                                                user role to assign to all users</p>
+                                        </li>
+                                    </ul>
+                                </dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt>Return type</dt>
+                                <dd>
+                                    <p><codeph>List</codeph>[<xref
+                                            href="https://python.docs.encord.com/api.html#encord.orm.dataset.DatasetUser"
+                                            format="html" scope="external"
+                                                ><codeph>DatasetUser</codeph></xref>]</p>
+                                </dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+            <codeblock id="codeblock_f2x_ccq_pyb">    def add_users(self, user_emails: List[str], user_role: DatasetUserRole) -> List[DatasetUser]:
+        """
+        Add users to dataset. If the user was already added, this operation will succeed but the `user_role` will be
+        unchanged. The existing `user_role` will be reflected in the `DatasetUser` instance.
+
+        Args:
+            user_emails: list of user emails to be added
+            user_role: the user role to assign to all users
+        """
+        return self._client.add_users(user_emails, user_role)</codeblock>
+        </body>
+    </topic>
+    <topic id="topic_glz_xhq_pyb">
+        <title><b>upload_video</b></title>
+        <body>
+            <dl id="dl_icn_51q_pyb">
+                <dlentry>
+                    <dt id="encord.dataset.Dataset.upload_video"
+                            ><b>upload_video</b>(<i>file_path</i>,
+                            <i>cloud_upload_settings=CloudUploadSettings(max_retries=None,
+                            backoff_factor=None, allow_failures=False)</i>, <i>title=None</i>)</dt>
+                    <dd>
+                        <p>Upload video to Encord storage.</p>
+                        <dl id="dl_jcn_51q_pyb">
+                            <dlentry>
+                                <dt>Parameters</dt>
+                                <dd>
+                                    <ul id="ul_kcn_51q_pyb">
+                                        <li>
+                                            <p><b>file_path</b> (<codeph>str</codeph>) – path to
+                                                video e.g. ‘/home/user/data/video.mp4’</p>
+                                        </li>
+                                        <li>
+                                            <p><b>cloud_upload_settings</b> (<xref
+                                                  href="https://python.docs.encord.com/api.html#encord.http.utils.CloudUploadSettings"
+                                                  format="html" scope="external"
+                                                  ><codeph>CloudUploadSettings</codeph></xref>) –
+                                                Settings for uploading data into the cloud. Change
+                                                this object to overwrite the default values.</p>
+                                        </li>
+                                        <li>
+                                            <p><b>title</b>
+                                                  (<codeph>Optional</codeph>[<codeph>str</codeph>])
+                                                – The video title. If unspecified, this will be the
+                                                file name. This title should include an extension.
+                                                For example “encord_video.mp4”.</p>
+                                        </li>
+                                    </ul>
+                                </dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt>Returns</dt>
+                                <dd>
+                                    <p>Bool.</p>
+                                </dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt>Raises</dt>
+                                <dd>
+                                    <p><xref
+                                            href="https://python.docs.encord.com/api.html#encord.exceptions.UploadOperationNotSupportedError"
+                                            format="html" scope="external"
+                                                ><b>UploadOperationNotSupportedError</b></xref> – If
+                                        trying to upload to external datasets (e.g.
+                                        S3/GPC/Azure)</p>
+                                </dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+            <codeblock id="codeblock_edy_2cq_pyb">    def upload_video(
+        self,
+        file_path: str,
+        cloud_upload_settings: CloudUploadSettings = CloudUploadSettings(),
+        title: Optional[str] = None,
+    ):
+        """
+        Upload video to Encord storage.
+
+        Args:
+            file_path: path to video e.g. '/home/user/data/video.mp4'
+            cloud_upload_settings:
+                Settings for uploading data into the cloud. Change this object to overwrite the default values.
+            title:
+                The video title. If unspecified, this will be the file name. This title should include an extension.
+                For example "encord_video.mp4".
+
+        Returns:
+            Bool.
+
+        Raises:
+            UploadOperationNotSupportedError: If trying to upload to external
+                                              datasets (e.g. S3/GPC/Azure)
+        """
+        return self._client.upload_video(file_path, cloud_upload_settings=cloud_upload_settings, title=title)
+
+</codeblock>
+        </body>
+    </topic>
+    <topic id="topic_jd4_zhq_pyb">
+        <title><b>create_image_group</b></title>
+        <body>
+            <dl id="dl_lcn_51q_pyb">
+                <dlentry>
+                    <dt id="encord.dataset.Dataset.create_image_group"
+                            ><b>create_image_group</b>(<i>file_paths</i>, <i>max_workers=None</i>,
+                            <i>cloud_upload_settings=CloudUploadSettings(max_retries=None,
+                            backoff_factor=None, allow_failures=False)</i>, <i>title=None</i>,
+                            <i>*</i>, <i>create_video=True</i>)</dt>
+                    <dd>
+                        <p>Create an image group in Encord storage. Choose this type of image upload
+                            for sequential images. Else, you can choose the <xref
+                                href="https://python.docs.encord.com/api.html#encord.dataset.Dataset.upload_image"
+                                format="html" scope="external"
+                                    ><codeph>Dataset.upload_image()</codeph></xref> function.</p>
+                        <dl id="dl_mcn_51q_pyb">
+                            <dlentry>
+                                <dt>Parameters</dt>
+                                <dd>
+                                    <ul id="ul_ncn_51q_pyb">
+                                        <li>
+                                            <p><b>file_paths</b>
+                                                  (<codeph>Iterable</codeph>[<codeph>str</codeph>])
+                                                – a list of paths to images, e.g.
+                                                [‘/home/user/data/img1.png’,
+                                                ‘/home/user/data/img2.png’]</p>
+                                        </li>
+                                        <li>
+                                            <p><b>max_workers</b>
+                                                  (<codeph>Optional</codeph>[<codeph>int</codeph>])
+                                                – DEPRECATED: This argument will be ignored</p>
+                                        </li>
+                                        <li>
+                                            <p><b>cloud_upload_settings</b> (<xref
+                                                  href="https://python.docs.encord.com/api.html#encord.http.utils.CloudUploadSettings"
+                                                  format="html" scope="external"
+                                                  ><codeph>CloudUploadSettings</codeph></xref>) –
+                                                Settings for uploading data into the cloud. Change
+                                                this object to overwrite the default values.</p>
+                                        </li>
+                                        <li>
+                                            <p><b>title</b>
+                                                  (<codeph>Optional</codeph>[<codeph>str</codeph>])
+                                                – The title of the image group. If unspecified this
+                                                will be randomly generated for you. This title
+                                                should NOT include an extension. For example
+                                                “encord_image_group”.</p>
+                                        </li>
+                                        <li>
+                                            <p><b>create_video</b> (<codeph>bool</codeph>) – A flag
+                                                specifying how image groups are stored. If
+                                                  <i>True</i>, a compressed video will be created
+                                                from the image groups. <i>True</i> was the previous
+                                                default support. If <i>False</i>, the images are
+                                                saved as a sequence of images.</p>
+                                        </li>
+                                    </ul>
+                                </dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt>Returns</dt>
+                                <dd>
+                                    <p>Bool.</p>
+                                </dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt>Raises</dt>
+                                <dd>
+                                    <p><xref
+                                            href="https://python.docs.encord.com/api.html#encord.exceptions.UploadOperationNotSupportedError"
+                                            format="html" scope="external"
+                                                ><b>UploadOperationNotSupportedError</b></xref> – If
+                                        trying to upload to external datasets (e.g.
+                                        S3/GPC/Azure)</p>
+                                </dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+            <codeblock id="codeblock_fs3_gcq_pyb">    def create_image_group(
+        self,
+        file_paths: Iterable[str],
+        max_workers: Optional[int] = None,
+        cloud_upload_settings: CloudUploadSettings = CloudUploadSettings(),
+        title: Optional[str] = None,
+        *,
+        create_video: bool = True,
+    ):
+        """
+        Create an image group in Encord storage. Choose this type of image upload for sequential images. Else, you can
+        choose the :meth:`.Dataset.upload_image` function.
+
+        Args:
+            file_paths: a list of paths to images, e.g.
+                ['/home/user/data/img1.png', '/home/user/data/img2.png']
+            max_workers:
+                DEPRECATED: This argument will be ignored
+            cloud_upload_settings:
+                Settings for uploading data into the cloud. Change this object to overwrite the default values.
+            title:
+                The title of the image group. If unspecified this will be randomly generated for you. This title should
+                NOT include an extension. For example "encord_image_group".
+            create_video:
+                A flag specifying how image groups are stored. If `True`, a compressed video will be created from
+                the image groups. `True` was the previous default support. If `False`, the images
+                are saved as a sequence of images.
+
+        Returns:
+            Bool.
+
+        Raises:
+            UploadOperationNotSupportedError: If trying to upload to external
+                                              datasets (e.g. S3/GPC/Azure)
+        """
+        return self._client.create_image_group(
+            file_paths,
+            cloud_upload_settings=cloud_upload_settings,
+            title=title,
+            create_video=create_video,
+        )
+</codeblock>
+        </body>
+    </topic>
+    <topic id="topic_yxx_b3q_pyb">
+        <title><b>create_dicom_series</b></title>
+        <body>
+            <dl id="dl_ocn_51q_pyb">
+                <dlentry>
+                    <dt id="encord.dataset.Dataset.create_dicom_series"
+                            ><b>create_dicom_series</b>(<i>file_paths</i>,
+                            <i>cloud_upload_settings=CloudUploadSettings(max_retries=None,
+                            backoff_factor=None, allow_failures=False)</i>, <i>title=None</i>)</dt>
+                    <dd>
+                        <p>Upload a DICOM series to Encord storage</p>
+                        <dl id="dl_pcn_51q_pyb">
+                            <dlentry>
+                                <dt>Parameters</dt>
+                                <dd>
+                                    <ul id="ul_qcn_51q_pyb">
+                                        <li>
+                                            <p><b>file_paths</b>
+                                                  (<codeph>List</codeph>[<codeph>str</codeph>]) – a
+                                                list of paths to DICOM files, e.g.
+                                                [‘/home/user/data/DICOM_1.dcm’,
+                                                ‘/home/user/data/DICOM_2.dcm’]</p>
+                                        </li>
+                                        <li>
+                                            <p><b>cloud_upload_settings</b> (<xref
+                                                  href="https://python.docs.encord.com/api.html#encord.http.utils.CloudUploadSettings"
+                                                  format="html" scope="external"
+                                                  ><codeph>CloudUploadSettings</codeph></xref>) –
+                                                Settings for uploading data into the cloud. Change
+                                                this object to overwrite the default values.</p>
+                                        </li>
+                                        <li>
+                                            <p><b>title</b>
+                                                  (<codeph>Optional</codeph>[<codeph>str</codeph>])
+                                                – The title of the DICOM series. If unspecified this
+                                                will be randomly generated for you. This title
+                                                should NOT include an extension. For example
+                                                “encord_image_group”.</p>
+                                        </li>
+                                    </ul>
+                                </dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt>Returns</dt>
+                                <dd>
+                                    <p>Bool.</p>
+                                </dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt>Raises</dt>
+                                <dd>
+                                    <p><xref
+                                            href="https://python.docs.encord.com/api.html#encord.exceptions.UploadOperationNotSupportedError"
+                                            format="html" scope="external"
+                                                ><b>UploadOperationNotSupportedError</b></xref> – If
+                                        trying to upload to external datasets (e.g.
+                                        S3/GPC/Azure)</p>
+                                </dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+            <codeblock id="codeblock_of3_jcq_pyb">    def create_dicom_series(
+        self,
+        file_paths: List[str],
+        cloud_upload_settings: CloudUploadSettings = CloudUploadSettings(),
+        title: Optional[str] = None,
+    ):
+        """
+        Upload a DICOM series to Encord storage
+
+        Args:
+            file_paths: a list of paths to DICOM files, e.g.
+                ['/home/user/data/DICOM_1.dcm', '/home/user/data/DICOM_2.dcm']
+            cloud_upload_settings:
+                Settings for uploading data into the cloud. Change this object to overwrite the default values.
+            title:
+                The title of the DICOM series. If unspecified this will be randomly generated for you. This title should
+                NOT include an extension. For example "encord_image_group".
+        Returns:
+            Bool.
+
+        Raises:
+            UploadOperationNotSupportedError: If trying to upload to external
+                                              datasets (e.g. S3/GPC/Azure)
+        """
+        return self._client.create_dicom_series(file_paths, cloud_upload_settings=cloud_upload_settings, title=title)</codeblock>
+        </body>
+    </topic>
+    <topic id="topic_bfn_d3q_pyb">
+        <title><b>upload_image</b></title>
+        <body>
+            <dl id="dl_rcn_51q_pyb">
+                <dlentry>
+                    <dt id="encord.dataset.Dataset.upload_image"
+                            ><b>upload_image</b>(<i>file_path</i>, <i>title=None</i>,
+                            <i>cloud_upload_settings=CloudUploadSettings(max_retries=None,
+                            backoff_factor=None, allow_failures=False)</i>)</dt>
+                    <dd>
+                        <p>Upload a single image to Encord storage. If your images are sequential we
+                            recommend creating an image group via the <xref
+                                href="https://python.docs.encord.com/api.html#encord.dataset.Dataset.create_image_group"
+                                format="html" scope="external"
+                                    ><codeph>Dataset.create_image_group()</codeph></xref> function.
+                            For more information please compare <xref
+                                href="https://docs.encord.com/docs/annotate-images" format="html"
+                                scope="external">https://docs.encord.com/docs/annotate-images</xref>
+                            and <xref href="https://docs.encord.com/docs/annotate-videos"
+                                format="html" scope="external"
+                                >https://docs.encord.com/docs/annotate-videos</xref></p>
+                        <dl id="dl_scn_51q_pyb">
+                            <dlentry>
+                                <dt>Parameters</dt>
+                                <dd>
+                                    <ul id="ul_tcn_51q_pyb">
+                                        <li>
+                                            <p><b>file_path</b>
+                                                  (<codeph>Union</codeph>[<codeph>Path</codeph>,
+                                                  <codeph>str</codeph>]) – The file path to the
+                                                image</p>
+                                        </li>
+                                        <li>
+                                            <p><b>title</b>
+                                                  (<codeph>Optional</codeph>[<codeph>str</codeph>])
+                                                – The image title. If unspecified, this will be the
+                                                file name. This title should include an extension.
+                                                For example “encord_image.png”.</p>
+                                        </li>
+                                        <li>
+                                            <p><b>cloud_upload_settings</b> (<xref
+                                                  href="https://python.docs.encord.com/api.html#encord.http.utils.CloudUploadSettings"
+                                                  format="html" scope="external"
+                                                  ><codeph>CloudUploadSettings</codeph></xref>) –
+                                                Settings for uploading data into the cloud. Change
+                                                this object to overwrite the default values.</p>
+                                        </li>
+                                    </ul>
+                                </dd>
+                            </dlentry>
+                            <dlentry>
+                                <dt>Return type</dt>
+                                <dd>
+                                    <p><xref
+                                            href="https://python.docs.encord.com/api.html#encord.orm.dataset.Image"
+                                            format="html" scope="external"
+                                            ><codeph>Image</codeph></xref></p>
+                                </dd>
+                            </dlentry>
+                        </dl>
+                    </dd>
+                </dlentry>
+            </dl>
+            <codeblock id="codeblock_ty4_lcq_pyb">    def upload_image(
+        self,
+        file_path: Union[Path, str],
+        title: Optional[str] = None,
+        cloud_upload_settings: CloudUploadSettings = CloudUploadSettings(),
+    ) -> Image:
+        """
+        Upload a single image to Encord storage. If your images are sequential we recommend creating an image group via
+        the :meth:`.Dataset.create_image_group` function. For more information please compare
+        https://docs.encord.com/docs/annotate-images and https://docs.encord.com/docs/annotate-videos
+
+        Args:
+            file_path: The file path to the image
+            title: The image title. If unspecified, this will be the file name. This title should include an extension.
+                For example "encord_image.png".
+            cloud_upload_settings:
+                Settings for uploading data into the cloud. Change this object to overwrite the default values.
+
+        """
+        return self._client.upload_image(file_path, title, cloud_upload_settings)
+</codeblock>
+        </body>
+    </topic>
+</topic>

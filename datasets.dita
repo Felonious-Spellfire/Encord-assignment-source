@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic PUBLIC "-//OASIS//DTD DITA Topic//EN" "topic.dtd">
+<topic id="datasets">
+    <title>Datasets</title>
+    <body>
+        <p conref="_content_reuse/con_general.dita#con_general/about_datasets"/>
+        <p>Each dataset can have a list of <codeph>DataRows</codeph> which are the individual
+            videos, image groups, images, or DICOM series within the dataset.</p>
+    </body>
+    <topic id="topic_nz2_gml_pyb">
+        <title>Create a Dataset</title>
+        <body>
+            <p>To create a dataset, first select where your data will be hosted with the appropriate
+                    <xref
+                    href="https://python.docs.encord.com/api.html#encord.orm.dataset.StorageLocation"
+                    format="html" scope="external"><codeph>StorageLocation</codeph></xref>.  Encord
+                currently supports the following for hosting your data:</p>
+            <ul id="ul_s4h_zrl_pyb">
+                <li>
+                    <p>Local storage: <codeph>CORD_STORAGE</codeph></p>
+                </li>
+                <li>
+                    <p>AWS S3: <codeph>AWS</codeph></p>
+                </li>
+                <li>
+                    <p>GCP: <codeph>GCP</codeph></p>
+                </li>
+                <li>
+                    <p>Azure: <codeph>Azure</codeph></p>
+                </li>
+                <li>
+                    <p>Open Telekom Cloud: <codeph>OTC</codeph></p>
+                </li>
+            </ul>
+            <p>This example creates a dataset called “PPE Training Set 01” that expects data hosted
+                on AWS S3.</p>
+            <codeblock id="codeblock_tbh_cql_pyb">from encord import EncordUserClient
+from encord.orm.dataset import CreateDatasetResponse, StorageLocation
+
+user_client: EncordUserClient = EncordUserClient.create_with_ssh_private_key(
+    "&lt;your_private_key>"
+)
+
+dataset: CreateDatasetResponse = user_client.create_dataset(
+    "PPE Training Set 01", StorageLocation.AWS
+)
+print(dataset)</codeblock>
+            <p>Output</p>
+            <codeblock id="codeblock_w3l_2ql_pyb">{
+    "title": "PPE Training Set 01",
+    "type": 1,
+    "dataset_hash": "&lt;dataset_hash>",
+    "user_hash": "&lt;user_hash>",
+}</codeblock>
+            <p>This example creates the dataset "PPE Testing Set 01" and expects data to be local. </p>
+            <codeblock id="codeblock_iq1_yql_pyb">from encord import EncordUserClient
+from encord.orm.dataset import CreateDatasetResponse, StorageLocation
+
+user_client: EncordUserClient = EncordUserClient.create_with_ssh_private_key(
+    "&lt;your_private_key>"
+)
+
+dataset: CreateDatasetResponse = user_client.create_dataset(
+    "PPE Testing Set 01", StorageLocation.CORD_STORAGE
+)
+print(dataset)</codeblock>
+            <p>Output</p>
+            <codeblock id="codeblock_qhl_yql_pyb">{
+    "title": "PPE Testing Set 01",
+    "type": 0,
+    "dataset_hash": "&lt;dataset_hash>",
+    "user_hash": "&lt;user_hash>",
+}</codeblock>
+        </body>
+    </topic>
+    <topic id="topic_dzj_gml_pyb">
+        <title>Upload Data to Datasets</title>
+        <body>
+            <p>Encord supports uploading data to datasets from local storage and from cloud
+                services. To upload data from cloud services, you must already have the cloud
+                services prepared. Refer to the documentation from the supported cloud services to
+                prepare those services.</p>
+        </body>
+        <topic id="topic_lhz_fml_pyb">
+            <title conref="_content_reuse/con_general.dita#con_general/import_guildelines_01"
+                >Re</title>
+            <body>
+                <p conref="_content_reuse/con_general.dita#con_general/import_guildelines_02"/>
+                <note conref="_content_reuse/con_general.dita#con_general/import_guildelines_03"
+                    id="note_fsw_k4l_pyb"/>
+                <table conref="_content_reuse/con_general.dita#con_general/import_guildelines_04"
+                    id="table_vxg_tsp_pyb">
+                    <tgroup cols="1">
+                        <tbody>
+                            <row>
+                                <entry/>
+                            </row>
+                        </tbody>
+                    </tgroup>
+                </table>
+                <table conref="_content_reuse/con_general.dita#con_general/import_guildelines_05"
+                    id="table_lqz_krp_pyb">
+                    <tgroup cols="1">
+                        <tbody>
+                            <row>
+                                <entry/>
+                            </row>
+                        </tbody>
+                    </tgroup>
+                </table>
+            </body>
+        </topic>
+        <topic id="topic_cq5_3dq_pyb">
+            <title>Upload Local Data</title>
+            <body>
+                <p>Uploading videos and images from local storage is a fairly direct process. </p>
+                <section id="section_sz1_djq_pyb">
+                    <title>Upload Videos</title>
+                    <p>Use the <xref href="dataset_sdk.dita#topic_glz_xhq_pyb"/> method to upload a
+                        video to a dataset using Encord storage.</p>
+                    <codeblock id="codeblock_wzk_tjq_pyb" outputclass="language-python">dataset.upload_video("path/to/your/video.mp4")</codeblock>
+                    <p>This method uploads the specified video file to the dataset associated with
+                        the <xref
+                            href="https://python.docs.encord.com/api.html#encord.dataset.Dataset"
+                            format="html" scope="external"><codeph>dataset</codeph></xref>.</p>
+                </section>
+                <section id="section_jv3_2jq_pyb">
+                    <title>Upload Images</title>
+                    <p>Use the <xref href="dataset_sdk.dita#topic_jd4_zhq_pyb"/> method to upload
+                        images and create an image group using Encord storage.</p>
+                    <codeblock id="codeblock_shh_5jq_pyb" outputclass="language-python">dataset.create_image_group(
+    [
+        "path/to/your/img1.jpeg",
+        "path/to/your/img2.jpeg",
+    ]
+)</codeblock>
+                    <p>This method uploads the specified list of images to the dataset associated
+                        with the <xref
+                            href="https://python.docs.encord.com/api.html#encord.dataset.Dataset"
+                            format="html" scope="external"><codeph>dataset</codeph></xref> and
+                        creates an image group.</p>
+                    <note id="note_k2x_llq_pyb">
+                        <ul id="ul_cwk_mlq_pyb">
+                            <li>
+                                <p>Image groups are images of the same resolution, so if
+                                        <codeph>img1.jpeg</codeph> and <codeph>img2.jpeg</codeph>
+                                    from the example above are <codeph>[1920, 1080]</codeph> and
+                                        <codeph>[1280, 720]</codeph>, respectively, they will end up
+                                    in each of their own image group.</p>
+                            </li>
+                            <li>
+                                <p>Images in an image group are assigned a
+                                        <codeph>data_sequence</codeph> number, which is based on the
+                                    order or the files listed in the argument to <xref
+                                        href="https://python.docs.encord.com/api.html#encord.dataset.Dataset.create_image_group"
+                                        format="html" scope="external"
+                                            ><codeph>create_image_group</codeph></xref>. If the
+                                    sequence is important, make sure to provide a list with
+                                    filenames in the correct order.</p>
+                            </li>
+                        </ul>
+                    </note>
+                    <p>You can also upload individual images to a dataset using Encord storage with
+                        the method <xref
+                            href="https://python.docs.encord.com/api.html#encord.dataset.Dataset.upload_image"
+                            format="html" scope="external"
+                        ><codeph>upload_image()</codeph></xref>.</p>
+                    <codeblock id="codeblock_q2t_2kq_pyb" outputclass="language-python">dataset.upload_image("path/to/your/img1.jpeg")</codeblock>
+                </section>
+            </body>
+        </topic>
+        <topic id="topic_yrs_jdq_pyb">
+            <title>Upload Cloud Service Data </title>
+            <body>
+                <ol id="ol_hzd_rlq_pyb">
+                    <li>
+                        <p>Use <xref
+                                href="https://python.docs.encord.com/api.html#encord.user_client.EncordUserClient.get_cloud_integrations"
+                                format="html" scope="external"
+                                    ><codeph>user_client.get_cloud_integrations()</codeph></xref>
+                            method to retrieve a list of available Cloud Integrations</p>
+                    </li>
+                    <li>
+                        <p>Grab the id from the integration of your choice and call <xref
+                                href="https://python.docs.encord.com/api.html#encord.dataset.Dataset.add_private_data_to_dataset"
+                                format="html" scope="external"
+                                    ><codeph>dataset.add_private_data_to_dataset()</codeph></xref>
+                            on the <codeph>dataset</codeph> with either the absolute path to a json
+                            file or a python dictionary in the format specified in the <xref
+                                href="https://docs.encord.com/docs/annotate-private-cloud-integration#json-format"
+                                format="html" scope="external">Private cloud section</xref> of the
+                            web-app datasets documentation</p>
+                    </li>
+                </ol>
+                <codeblock id="codeblock_mfw_rlq_pyb">from typing import List
+
+from encord import Dataset, EncordUserClient
+from encord.orm.cloud_integration import CloudIntegration
+from encord.orm.dataset import AddPrivateDataResponse, LongPollingStatus
+
+user_client: EncordUserClient = EncordUserClient.create_with_ssh_private_key(
+    "&lt;your_private_key>"
+)
+dataset: Dataset = user_client.get_dataset("&lt;dataset_hash>")
+
+# Choose integration
+integrations: List[CloudIntegration] = user_client.get_cloud_integrations()
+print("Integration Options:")
+print(integrations)
+
+integration_idx: int = [i.title for i in integrations].index("AWS")
+integration: str = integrations[integration_idx].id
+
+use_simple_api: bool = True
+
+# Check our documentation here: https://docs.encord.com/docs/annotate-private-cloud-integration#json-format
+# to make sure you upload your data in the correct format
+
+if use_simple_api:
+    # using add_private_data_to_dataset will start upload job and await for it to finish,
+    # then raise exception in case errors occur
+    response: AddPrivateDataResponse = dataset.add_private_data_to_dataset(
+        integration, "path/to/json/file.json"
+    )
+else:
+    # using add_private_data_to_dataset_start will only initialize job
+    upload_job_id: str = dataset.add_private_data_to_dataset_start(
+        integration, "path/to/json/file.json"
+    )
+
+    # at this point user can save upload_job_id externally, exit python process and
+    # check for status with add_private_data_to_dataset_get_result at any point in the future
+
+    # one can get job status without awaiting the final response, with timeout_seconds=0
+    # this will perform one quick call to encord backend for status check
+    print(
+        dataset.add_private_data_to_dataset_get_result(
+            upload_job_id,
+            timeout_seconds=0,
+        )
+    )
+
+    # using add_private_data_to_dataset_get_result without
+    # timeout_seconds will await for job to finish
+    res = dataset.add_private_data_to_dataset_get_result(upload_job_id)
+
+    if res.status == LongPollingStatus.DONE:
+        response = AddPrivateDataResponse(
+            dataset_data_list=res.data_hashes_with_titles
+        )
+    elif res.status == LongPollingStatus.ERROR:
+        raise Exception(res.errors)  # one can specify custom error handling
+    else:
+        raise ValueError(f"res.status={res.status}, this should never happen")
+
+print(response.dataset_data_list)</codeblock>
+            </body>
+        </topic>
+    </topic>
+</topic>
